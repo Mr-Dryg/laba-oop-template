@@ -21,7 +21,9 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
 
-add_library(${CMAKE_PROJECT_NAME}_lib src/src.cpp)
+add_library(${CMAKE_PROJECT_NAME}_lib
+src/src.cpp
+)
 add_executable(${CMAKE_PROJECT_NAME}_exe main.cpp)
 
 target_link_libraries(${CMAKE_PROJECT_NAME}_exe PRIVATE ${CMAKE_PROJECT_NAME}_lib)
@@ -29,7 +31,10 @@ target_link_libraries(${CMAKE_PROJECT_NAME}_exe PRIVATE ${CMAKE_PROJECT_NAME}_li
 # Добавление тестов
 enable_testing()
 
-add_executable(tests tests/tests01.cpp)
+add_executable(tests
+  tests/tests01.cpp
+  tests/test_main.cpp
+)
 target_link_libraries(tests ${CMAKE_PROJECT_NAME}_lib gtest_main)
 
 # Добавление тестов в тестовый набор
